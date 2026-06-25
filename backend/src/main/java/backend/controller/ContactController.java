@@ -1,21 +1,31 @@
 package backend.controller;
 
+import backend.entity.Contact;
+import backend.repository.ContactRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ContactController {
+    
+    @Autowired
+    private ContactRepository repository;
+
     @PostMapping("/contact")
     public String submitForm(
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String message) {
 
-        System.out.println("Name: " + name);
+        Contact contact = new Contact();
 
-        System.out.println("Email: " + email);
+        contact.setName(name);
+        contact.setEmail(email);
+        contact.setMessage(message);
 
-        System.out.println("Message: " + message);
+        repository.save(contact);
 
-        return "Form Submitted Successfully";
+        return "Contact Saved Successfully";
     }
 }
