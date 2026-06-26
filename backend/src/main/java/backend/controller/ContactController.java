@@ -6,6 +6,8 @@ import backend.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ContactController {
     
@@ -27,5 +29,10 @@ public class ContactController {
         repository.save(contact);
 
         return "Contact Saved Successfully";
+    }
+
+    @GetMapping("/contacts")
+    public List<Contact> getAllContacts() {
+        return repository.findAll();
     }
 }
