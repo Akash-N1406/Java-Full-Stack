@@ -1,198 +1,177 @@
-# Contact Form Web Application
+# Contact Form Application
 
-## Project Overview
+A full-stack Contact Form application developed using Spring Boot, MySQL, HTML, CSS, and JavaScript. The application allows users to submit contact information, stores the data in a MySQL database, and provides a REST API to retrieve all submitted contacts in JSON format.
 
-This project is a simple Full Stack Web Application developed using HTML, CSS, Java, and Spring Boot. The application consists of a responsive landing page with a contact form that allows users to submit their Name, Email, and Message.
+## Features
 
-The frontend is developed using HTML and CSS, while the backend is built using Spring Boot. When a user submits the form, the backend receives the data and displays it in the console.
+* Contact form with:
 
----
-
-## Objectives
-
-* Create a responsive landing page.
-* Design a contact form using HTML and CSS.
-* Develop a Spring Boot backend.
-* Handle form submissions using a Controller.
-* Receive and process user data.
-* Display submitted information in the backend console.
-
----
+  * Name
+  * Email
+  * Message
+* Store contact details in MySQL database
+* REST API for retrieving all contacts
+* Spring Data JPA integration
+* Hibernate ORM for database operations
+* JSON response support
+* Maven-based project structure
 
 ## Technologies Used
 
-### Frontend
-
-* HTML5
-* CSS3
-
 ### Backend
 
-* Java
+* Java 17
 * Spring Boot
-* Spring Web
-
-### Tools
-
-* Visual Studio Code
-* Git
-* GitHub
+* Spring Data JPA
+* Hibernate
 * Maven
 
----
+### Database
+
+* MySQL
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+### Version Control
+
+* Git
+* GitHub
 
 ## Project Structure
 
 ```text
-Java-FullStack-Task1
+backend/
 │
-├── frontend
-│   ├── index.html
-│   └── style.css
+├── controller/
+│   └── ContactController.java
 │
-└── backend
-    │
-    ├── pom.xml
-    │
-    └── src
-        └── main
-            └── java
-                │
-                ├── BackendApplication.java
-                │
-                └── controller
-                    └── ContactController.java
+├── entity/
+│   └── Contact.java
+│
+├── repository/
+│   └── ContactRepository.java
+│
+├── resources/
+│   └── application.properties
+│
+└── BackendApplication.java
 ```
 
----
+## Database Configuration
 
-## Features
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/contactdb
+spring.datasource.username=springuser
+spring.datasource.password=YOUR_PASSWORD
 
-### Landing Page
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
 
-* Modern user interface
-* Responsive design
-* Gradient background
-* Hero section
+## API Endpoints
 
-### Contact Form
+### Save Contact
 
-* Name field
-* Email field
-* Message field
-* Submit button
-* Form validation using `required`
+```http
+POST /contact
+```
 
-### Backend Processing
-
-* Spring Boot application
-* REST Controller
-* POST request handling
-* Console output of submitted data
-
----
-
-## Backend Endpoint
-
-### POST /contact
-
-Receives the following parameters:
-
-| Parameter | Description          |
-| --------- | -------------------- |
-| name      | User's name          |
-| email     | User's email address |
-| message   | User's message       |
-
-Example:
+Parameters:
 
 ```text
-Name: Akash
-Email: akash@gmail.com
-Message: Hello Internship
+name
+email
+message
 ```
 
----
+Response:
 
-## How to Run the Project
+```text
+Contact Saved Successfully
+```
 
-### Frontend
+### Get All Contacts
 
-1. Open the frontend folder.
-2. Open `index.html` using Live Server or a browser.
-3. Fill out the contact form.
+```http
+GET /contacts
+```
 
-### Backend
+Sample Response:
 
-1. Navigate to the backend folder.
+```json
+[
+  {
+    "id": 1,
+    "name": "Akash",
+    "email": "akash@gmail.com",
+    "message": "Hello"
+  }
+]
+```
+
+## How to Run
+
+### Clone Repository
 
 ```bash
+git clone <repository-url>
 cd backend
 ```
 
-2. Run the Spring Boot application.
+### Install Dependencies
+
+```bash
+./mvnw clean install
+```
+
+### Run Application
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-3. Open the frontend page and submit the form.
-
-4. View submitted data in the terminal.
-
----
-
-## Sample Output
-
-### Browser
+Application runs on:
 
 ```text
-Form Submitted Successfully
+http://localhost:8080
 ```
 
-### Console
+## Database Verification
 
-```text
-Name: Akash
+Login to MySQL:
 
-Email: akash@gmail.com
-
-Message: Hello Internship
+```bash
+mysql -u springuser -p
 ```
 
----
+Select database:
 
-## Concepts Learned
+```sql
+USE contactdb;
+```
 
-* HTML Structure
-* CSS Styling
-* Responsive Design
-* Forms and Input Fields
-* HTTP Requests
-* GET and POST Methods
-* Spring Boot Framework
-* REST Controllers
-* Request Parameters
-* Maven Dependency Management
-* Full Stack Application Development
-* Git and GitHub Version Control
+View records:
 
----
+```sql
+SELECT * FROM contacts;
+```
 
-## Future Improvements
+## Learning Outcomes
 
-* Store submissions in a database.
-* Add form success page.
-* Add email notifications.
-* Improve frontend responsiveness.
-* Implement client-side JavaScript validation.
-
----
+* Spring Boot project setup
+* MySQL integration with Spring Data JPA
+* Hibernate ORM concepts
+* REST API development
+* CRUD foundations
+* Maven dependency management
+* Git and GitHub workflow
 
 ## Author
 
-Akash
-
-Java Full Stack Internship - Week 1 Task
-
-Contact Form Web Application
+Akash N
+B.Tech Computer Science Engineering
+Internship Project – Task 2
